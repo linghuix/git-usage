@@ -1,3 +1,5 @@
-git init
+git init//初始化仓库
+git add 文件名加扩展名//添加仓库
+git commit -m "explanation"//提交到仓库
 git push
 git pull

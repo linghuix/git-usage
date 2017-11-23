@@ -10,7 +10,7 @@ git diff filename		//to see things changed in the file
 git add filename
 git commit
 ------------------------------------------------
-git log 		//you can check the history of your modification
+git log or git log --pretty=oneline		//you can check the history of your modification
 git reset --hard ID  or  git reset --hard HEAD@{1}//change the branch
 -----------------------------------------------------
 git push

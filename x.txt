@@ -3,7 +3,7 @@
 第二条变化历史版本在 stage 但还没有重新add。
 第三条变化还没有 add 进 stage
 
-
+---------------------------------------------------
 git init			
 //intialize the repository
 

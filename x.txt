@@ -1,5 +1,13 @@
-git init//初始化仓库
-git add 文件名加扩展名//添加仓库
-git commit -m "explanation"//提交到仓库
+git init//intialize the repository
+git add filename//add the file to the respository
+git commit -m "explanation"//submit the file to the resposity
+-----------------------------------------------
+git status//see the status of the repository ,which is essential.
+-----------------------------------------------
+when you motified your files,you can use "git status" to see whether you have submit it to the respository.if not ,please use the following commands.Don't forget to use "git status" to know what you have done.
+ 
+git add filename
+git commit
+------------------------------------------------
 git push
 git pull

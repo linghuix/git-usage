@@ -1,11 +1,12 @@
-git init//intialize the repository
-git add filename//add the file to the respository
-git commit -m "explanation"//submit the file to the resposity
+git init			//intialize the repository
+git add filename		//add the file to the respository
+git commit -m "explanation"	//submit the file to the resposity
 -----------------------------------------------
-git status//see the status of the repository ,which is essential.
+git status			//see the status of the repository ,which is essential.
 -----------------------------------------------
-when you motified your files,you can use "git status" to see whether you have submit it to the respository.if not ,please use the following commands.Don't forget to use "git status" to know what you have done.
- 
+//when you motified your files,you can use "git status" to see whether you //have submit it to the respository.if not ,please use the following //commands.Don't forget to use "git status" to know what you have done.
+
+git diff filename		//to see things changed in the file 
 git add filename
 git commit
 ------------------------------------------------

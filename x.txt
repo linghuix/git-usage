@@ -33,10 +33,11 @@ git reset --hard ID  or  git reset --hard HEAD@{1}
 change the files in working directory.
 
 git reset HEAD filename		
-//discard the changes in working directory
+//synchronize or stage(repository) with work directory 
 
-git checkout -- filename	
-// synchronize master or stage(repository) with work directory 
+git checkout -- filename
+//discard the changes in working directory	
+
 
 -----------------------------------------------------
 

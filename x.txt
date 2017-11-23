@@ -1,17 +1,45 @@
-git init			//intialize the repository
-git add filename		//add the file to the respository
-git commit -m "explanation"	//submit the file to the resposity
------------------------------------------------
-git status		//see the status of the repository ,which is essential.
------------------------------------------------
-//when you modify your files,you can use "git status" to see whether you //have submit it to the respository.if not ,please use the following //commands.Don't forget to use "git status" to know what you have done.
+图片：
+第一条变化已经上传到stage，但还没有commit到master
+第二条变化历史版本在 stage 但还没有重新add。
+第三条变化还没有 add 进 stage
 
-git diff filename		//to see things changed in the file 
+
+git init			
+//intialize the repository
+
+git add filename		
+//add the file to the stage(repository)
+
+git commit -m "explanation"	
+//submit the file to the master(repository)
+----------------------------------------------------
+git status		
+//see the status of the repository ,which is essential.
+----------------------------------------------------
+when you modify your files,you can use "git status" to see whether you have submit it to the repository.if not ,please use the following commands.Don't forget to use "git status" to know what you have done.
+
+git diff filename
+git diff HEAD -- filename		
+//(difference)to see things changed in the file 
 git add filename
 git commit
-------------------------------------------------
-git log or git log --pretty=oneline		//you can check the history of your modification
-git reset --hard ID  or  git reset --hard HEAD@{1}//change the branch
 -----------------------------------------------------
+git log or git log --pretty=oneline		
+//you can check the history of your modification
+
+git reset --hard ID  or  git reset --hard HEAD@{1}
+//change the branch,choose the historical version
+-----------------------------------------------------
+change the files in working directory.
+
+git reset HEAD filename		
+//discard the changes in working directory
+
+git checkout -- filename	
+// synchronize master or stage(repository) with work directory 
+
+-----------------------------------------------------
+
+
 git push
 git pull

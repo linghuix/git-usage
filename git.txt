@@ -65,3 +65,25 @@ git clone git@github.com:path/repo-name.git(http://github.com/xulinghui10/name.g
 //clone the repository from remote your own repository
 git pull
 
+
+
+
+
+error1	conflict in push
+
+	$ git push testremote  
+	To ../remote-jackygit.git  
+ 	! [rejected]        master -> master (fetch first)  
+	error: failed to push some refs to '../remote-jackygit.git'  
+	hint: Updates were rejected because the remote contains work that you do  
+	hint: not have locally. This is usually caused by another repository pushing  
+	hint: to the same ref. You may want to first integrate the remote changes  
+	hint: (e.g., 'git pull ...') before pushing again.  
+	hint: See the 'Note about fast-forwards' in 'git push --help' for details. 
+
+
+被push的分支能够回溯到的commit都会被push到远程仓库
+
+远程分支回滚的三种方法：1.自己的分支回滚直接用reset
+			2.公共分支回滚用revert
+			3.错的太远了直接将代码全部删掉，用正确代码替代

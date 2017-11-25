@@ -20,7 +20,7 @@ when you modify your files,you can use "git status" to see whether you have subm
 
 git diff filename
 git diff HEAD -- filename		
-//(difference)to see things changed in the file 
+//(difference)to see things changed in the file ,only some type files.
 git add filename
 git commit
 -----------------------------------------------------
@@ -38,9 +38,24 @@ git reset HEAD filename
 git checkout -- filename
 //discard the changes in working directory	
 
-
 -----------------------------------------------------
+git branch name
+//create new branch
+git checkout branchname
+//switch to the new branch
+git branch -d name
+//delete the branch
+git checkout master
+git merge branchname
+//merge the branch to the master
+git log --graph
+//see the graph of the version history
+------------------------------------------------------
 
+git tag name/ID			//create a new tag which is stable for realease like v1.01;v2.20
+-a tagname -m "balabla..."	//add message
+-s tagname -m "balala..."	//use unique PGP signature 
+git tag				//see all the tags
 
 git push
 git pull

@@ -65,7 +65,10 @@ git clone git@github.com:path/repo-name.git(http://github.com/xulinghui10/name.g
 //clone the repository from remote your own repository
 git pull
 
-
+看远程的提交日志：git log remotes/origin/master 
+当然如果你的本地很久没有更新过远程仓库的信息了，看到的日志可能就不是最新的
+所以在查看之前需要先运行
+git fetch 或者git fetch origin
 
 
 

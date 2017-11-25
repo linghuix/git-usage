@@ -87,3 +87,5 @@ error1	conflict in push
 远程分支回滚的三种方法：1.自己的分支回滚直接用reset
 			2.公共分支回滚用revert
 			3.错的太远了直接将代码全部删掉，用正确代码替代
+
+“Clone with HTTPS”，上面的连接就是这个仓库的远程访问地址！

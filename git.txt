@@ -1,7 +1,7 @@
-Í¼Æ¬£º
-µÚÒ»Ìõ±ä»¯ÒÑ¾­ÉÏ´«µ½stage£¬µ«»¹Ã»ÓĞcommitµ½master
-µÚ¶şÌõ±ä»¯ÀúÊ·°æ±¾ÔÚ stage µ«»¹Ã»ÓĞÖØĞÂadd¡£
-µÚÈıÌõ±ä»¯»¹Ã»ÓĞ add ½ø stage
+ï»¿å›¾ç‰‡ï¼š
+ç¬¬ä¸€æ¡å˜åŒ–å·²ç»ä¸Šä¼ åˆ°stageï¼Œä½†è¿˜æ²¡æœ‰commitåˆ°master
+ç¬¬äºŒæ¡å˜åŒ–å†å²ç‰ˆæœ¬åœ¨ stage ä½†è¿˜æ²¡æœ‰é‡æ–°addã€‚
+ç¬¬ä¸‰æ¡å˜åŒ–è¿˜æ²¡æœ‰ add è¿› stage
 
 ---------------------------------------------------
 git init			
@@ -64,6 +64,4 @@ git push -u origin master
 git clone git@github.com:path/repo-name.git(http://github.com/xulinghui10/name.git)
 //clone the repository from remote your own repository
 git pull
-a ne dslgshghj sdkhfsdh kdgh
-sgkslgs
 

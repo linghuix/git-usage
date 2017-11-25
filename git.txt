@@ -46,7 +46,7 @@ git checkout branchname
 git branch -d name
 //delete the branch
 git checkout master
-git merge branchname
+git merge --no-off -m "blabla" branchname
 //merge the branch to the master
 git log --graph
 //see the graph of the version history

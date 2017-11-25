@@ -56,6 +56,11 @@ git tag name/ID			//create a new tag which is stable for realease like v1.01;v2.
 -a tagname -m "balabla..."	//add message
 -s tagname -m "balala..."	//use unique PGP signature 
 git tag				//see all the tags
-
-git push
+--------------------------------------------------------------
+git remote add origin git@github.com:path/repo-name.git(http://github.com/xulinghui10/name.git)
+//associate the remote repository
+git push -u origin master
+//frist push to the remote repository.after that you can use "git push origin master"
+git clone git@github.com:path/repo-name.git(http://github.com/xulinghui10/name.git)
+//clone the repository from remote your own repository
 git pull

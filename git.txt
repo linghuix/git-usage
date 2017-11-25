@@ -64,4 +64,6 @@ git push -u origin master
 git clone git@github.com:path/repo-name.git(http://github.com/xulinghui10/name.git)
 //clone the repository from remote your own repository
 git pull
+a ne dslgshghj sdkhfsdh kdgh
+sgkslgs
 

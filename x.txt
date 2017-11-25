@@ -57,5 +57,4 @@ git tag name/ID			//create a new tag which is stable for realease like v1.01;v2.
 -s tagname -m "balala..."	//use unique PGP signature 
 git tag				//see all the tags
 
-git push
-git pull
+changggggggggggggggg

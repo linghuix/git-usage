@@ -53,15 +53,28 @@ git stash clear             # 删除所有存储的进度。
 ###  Repository 版本库
 
 ```shell
-git log 						  # 获取commit-id，查看版本库信息
+ # 版本穿越
 git reset [commit-id] --soft      # 工作区文件不变,所有改动都待commit，依旧保留所有的版本，回退错误，还可以根据此命令和id返回
 git reset [commit-id] --hard      # 工作区文件全部变为旧一个版本的，依旧保留所有的版本
 
+ # 版本比较
+git diff commit-id1 commit-id2    ## 比较不同版本之间的差异,id1为改动前,id2为改动后.+++为id2,---为id1,详细格式渊源参见 https://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html
+git diff                          # 比较最新版本+暂存区 与 工作区之间的差异,id1为默认的最新版本+暂存区;方便观察改动情况
+
+ # 版本信息
+git log 						  # 获取commit-id，查看版本库信息
+git log filename                  ## 列出某个文件被修改的所有版本id, 后续可以用git show显示所有的改动情况
+git log -p filename               ## 自动列出与filename改动相关的所有commit-id 与其上一次提交的差异
+git show commit-id [filename]     # 某次版本id[某个文件]的改动情况,具体显示commit对象的相关信息（提交者，提交时间和commit对象sha-1值等）和上一个提交对象的差异
+git show                          ## 最新commit的版本与上一个版本比较信息,与当前工作区是否改动无关!! 与git diff不同!!
+
+ # 仓库结构重建
 git rebase origin                 # 将当前分支的起点改为以origin为起点,出现错误时，修改后需要用git rebase --continue. 参考 https://blog.csdn.net/hudashi/article/details/7664631/
 git rebase --abort                # 会放弃合并，回到rebase操作之前的状态，之前的提交的不会丢弃；撤销rebase。
 
 git rebase -i id                  # 可以修改比id更新的版本的commit内容，或者合并某些版本仓库，id可以只输入前几位
 
+ # 内容删除
 git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path-to-your-remove-file' --prune-empty --tag-name-filter cat -- --all    # 本地仓库中删除版本库中记录的文件. path-to-your-remove-file是你要删除的文件的相对路径(相对于git仓库的根目录)。 
 ```
 

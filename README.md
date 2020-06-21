@@ -62,10 +62,12 @@ git diff commit-id1 commit-id2    ## 比较不同版本之间的差异,id1为改
 git diff                          # 比较最新版本+暂存区 与 工作区之间的差异,id1为默认的最新版本+暂存区;方便观察改动情况
 
  # 版本信息
-git log 						  # 获取commit-id，查看版本库信息
-git log filename                  ## 列出某个文件被修改的所有版本id, 后续可以用git show显示所有的改动情况
-git log -p filename               ## 自动列出与filename改动相关的所有commit-id 与其上一次提交的差异
-git show commit-id [filename]     # 某次版本id[某个文件]的改动情况,具体显示commit对象的相关信息（提交者，提交时间和commit对象sha-1值等）和上一个提交对象的差异
+git log [-5]					  # 获取最新5个commit-id的信息，查看版本库信息
+git log [-p] filename             ## 列出某个文件被修改的所有版本id, 后续可以用git show显示所有的改动情况 [-p 可展开显示每次提交的该文件内容差异]
+git log --stat				  	  ## 显示版本的文件变动行数，对于bin文件显示字节变动    显示形式: |总行数n ++- 【2/3n是增加的行数，1/3是删除了的行数】
+git show --stat <SHA1> | sed -n "/ [\w]\*|/p" | sed "s/|.\*$//"
+
+git show commit-id [filename]     # 某次版本id[某个文件]的具体改动情况,具体显示commit对象的相关信息（提交者，提交时间和commit对象sha-1值等）和上一个提交对象的差异
 git show                          ## 最新commit的版本与上一个版本比较信息,与当前工作区是否改动无关!! 与git diff不同!!
 
  # 仓库结构重建
@@ -234,7 +236,6 @@ git merge --continue
 git revert commit-id        # 提交一个新的版本,使得版本变成前一个版本
 git reset	                # 不适合公共版本的退回。reset会抛弃之前的版本
 ```
-
 
 ---
 

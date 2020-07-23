@@ -60,6 +60,9 @@ git reset [commit-id] --hard      # 工作区文件全部变为旧一个版本�
  # 版本比较
 git diff commit-id1 commit-id2    ## 比较不同版本之间的差异,id1为改动前,id2为改动后.+++为id2,---为id1,详细格式渊源参见 https://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html
 git diff                          # 比较最新版本+暂存区 与 工作区之间的差异,id1为默认的最新版本+暂存区;方便观察改动情况
+# windows使用CR LF作为换行符; Linux使用LF作为换行符。需要让git diff的时候忽略换行符的差异
+# https://blog.csdn.net/csfreebird/article/details/10448493
+# https://blog.csdn.net/littlehaes/article/details/103568181
 
  # 版本信息
 git log [-5]					  # 获取最新5个commit-id的信息，查看版本库信息

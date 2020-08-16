@@ -31,6 +31,7 @@ git config --global core.autocrlf input # 提交时转换为 LF, 签出时不转
 ```shell
 git init                # 新建空仓库
 git status              # 仓库工作目录状态观察
+git status -uno			# 可以只列出所有已经被git管理的且被修改但没提交的文件
 git log                 # 历史仓库观察
 git diff [file1] [file2]  # 比较文件的不同
 ```
@@ -42,6 +43,7 @@ git diff [file1] [file2]  # 比较文件的不同
 
 ```shell
 git add [file]                  # 添加工作区文件到暂存区
+git rm --cached [file]          # 删除暂存区中的文件
 git rm [file]                   # 删除工作区中的文件，并提交该操作到暂存区
 git checkout -- [file]		    # 用Repository的版本替换工作区的版本, 放弃了stage中的内容
 git reset [commit-id] --hard    # 工作区文件全部变为旧版本的
@@ -261,10 +263,31 @@ ssh的秘钥一般放在~/.ssh的隐藏文件中，~/.ssh/中的public秘钥，�
 
 
 
-## ignore
+## gitignore
+
+**只管理特定的文件版本**
 
 ```shell
- # 只管理特定的文件版本，
+# 实现工作区中仅c文件，头文件和txt文件的版本管理
+
+# 忽略所有的文件和目录
+*
+
+# 不忽略的目录
+# /**代表文件夹下的全部内容， 表明不忽略目录的管理。git 不可能包含一个文件，如果他的文件夹都被忽略了 
+!/**/	
+!directoryName/
+
+# 在上述的目录中不忽略下面指定的文件类型
+!*.c
+!*.h
+!directoryName/*.txt
+```
+
+
+
+```shell
+
  *.obj和*.gitignore
 
  # 忽略所有文件
@@ -287,3 +310,26 @@ ssh的秘钥一般放在~/.ssh的隐藏文件中，~/.ssh/中的public秘钥，�
 *.obj
 ```
 
+案例一
+
+> 版本管理某个文件夹下特定的文件（不包含子文件）
+
+<img src="C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816200417878.png" alt="image-20200816200417878" style="zoom: 50%;" />
+
+案例二
+
+> 这种方式，由于git忽略了文件夹，导致该文件夹中的文件也无法”去忽略“
+
+<img src="C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816200609953.png" alt="image-20200816200609953" style="zoom: 50%;" />
+
+案例三
+
+> 管理当前工作区中共所有目录子目录中的c文件
+
+![image-20200816201233850](C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816201233850.png)
+
+案例四
+
+> 需要注意的是，版本管理的只能是04 programming文件夹中的txt文件，不能是子文件夹中的txt文件
+
+<img src="C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816201526393.png" alt="image-20200816201526393" style="zoom:50%;" />

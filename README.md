@@ -257,6 +257,9 @@ git fetch <远程主机名> <远程分支名>  			 # 获取远程分支的最新
 git merge <本地分支1>		    # merge 本地分支 到 当前所在分支
 git merge --abort		    # 抛弃合并过程并且尝试重建合并前的状态。但是，当合并开始时如果存在未commit的文件，git merge --abort在某些情况下将无法重现合并前的状态。
 git merge --continue
+git merge --no-ff                   # 每次merge必会提交一次commit，防止fast forward
+想撤回merge可以用版本回退
+git checkout --patch branchname dir/filename.txt  # merge 分支的某个文件到当前所在分枝
 ```
 
 ![merge](./img/merge.png)

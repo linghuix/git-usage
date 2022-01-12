@@ -16,13 +16,25 @@ git config --global user.name "linghuix"
 配置别名
 
 ```shell
-git config --global alias.s status     //s -> status
+git config --global alias.s status     						//s -> status
 ```
 
 ```shell
 git config --global core.autocrlf true # 提交时转换为 LF, 签出时转换为 CRLF
 git config --global core.autocrlf input # 提交时转换为 LF, 签出时不转换
 ```
+
+
+
+**SSH 加密配置** 
+
+[官方SSH密钥生成指南](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) 
+
+![](README.assets/image-20220112093115766.png)
+
+
+
+
 
 
 
@@ -36,7 +48,9 @@ git log                 # 历史仓库观察
 git diff [file1] [file2]  # 比较文件的不同
 ```
 
-![git status](https://github.com/linghuix/git-usage/blob/master/img/gitstatus.png)
+
+
+<img src="README.assets/gitstatus-1617005491379.png" style="zoom: 50%;" />
 
 
 ### Work directory 工作区
@@ -61,6 +75,8 @@ git stash list              # 显示保存进度的列表
 git stash pop stash@{1}     # 恢复指定的进度到工作区。stash_id是通过git stash list命令得到的
 git stash clear             # 删除所有存储的进度。
 ```
+
+
 
 ###  Repository 版本库
 
@@ -93,27 +109,42 @@ git rebase -i id                  # 可以修改比id更新的版本的commit内
 
  # 内容删除
 git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path-to-your-remove-file' --prune-empty --tag-name-filter cat -- --all    # 本地仓库中删除版本库中记录的文件. path-to-your-remove-file是你要删除的文件的相对路径(相对于git仓库的根目录)。 
+
+
+git tag 						# 显示所有的tag标记的库
+git tag [tagname] 				# 给当前版本tag标记
+git tag [tagname] [commit-id] 	# 给commit-id的版本做tag标记
+git tag -d [tagname] 			# 删除tag标记
 ```
 
-![git_rm_all](./img/git_rm_all.png)
+![](./img/git_rm_all.png)
 
-![git_rebase_origin](./img/git_rebase_origin.png)
+<img src="./img/git_rebase_origin.png" style="zoom:50%;" />
 
 
 ### branches 分支
 
 ```shell
 git branch name			    # create new branch
+
 git checkout branchname	    # switch to the new branch
+git checkout --orphan <new branchname> # 假如某分支上，积累了无数次提交，你懒得打理，那这命令将是神器. 它会基于当前所在分支新建一个没有提交历史/无内容的孤儿分支，但是仓库创建分支前的内容一一俱全，只是还没有提交。新建的分支，严格意义上说，还不是一个分支，因为HEAD指向的引用中没有commit值，只有在进行一次提交后，它才算得上真正的分支。
+
 git branch -d name		    # delete the branch
+git branch -m oldName newName # 本地分支重命名(还没有推送到远程)
+git push origin --delete gg     # delete remote branch gg
+
 ```
 
 分支切换时的问题： https://blog.csdn.net/Song_93/article/details/53466646
 
 
+
 ## 远程仓库操作
 
 > 跟踪分支：概念：建立远程与本地分支的联系，使之保持跟踪即内容一致。git push/pull操作时自动将跟踪的分支进行融合
+
+
 
 ### 本地与远程仓库的绑定
 
@@ -122,7 +153,7 @@ git branch -d name		    # delete the branch
 > 已存在本地仓库，想给你的本地仓库添加远程的仓库，实现本地仓库内容推送到远程仓库
 
 ```shell
- # 建立追踪关系  origin相当于一个变量
+ # 建立追踪关系  命名远程仓库的变量名，默认是origin
 ssh:  git remote add [origin] [git@github.com:linghuix/Linux.git]           # 添加远程仓库ssh加密通讯地址，不需要输入密码
 http: git remote add [origin] [https://github.com/linghuix/Linux.git]       # 添加远程仓库http地址，需要输入账号，密码
 git remote set-url  origin https://github.com/linghuix/markdown.git         # 添加远程仓库http地址
@@ -135,8 +166,20 @@ git remote rm origin	                                                    # 删�
 > 本地仓库尚未存在，而远程仓库已经存在，则可以直接将远程仓库的拷贝到本地
 
 ```shell
-# 直接将远程的仓库fork到本地，同时建立好对应的分支的自动跟踪关系
+# 直接将远程的仓库fork到本地，同时建立好对应的分支的自动跟踪关系。
+
 git clone [http address]/[ssh address]
+```
+
+`git clone`默认拷贝仓库中所有的分支到本地，但只会在本地默认创建一个master分支，其余分支需要自己建立。如果远程还有其他的分支，此时用git branch -a查看所有分支：能看到远程的所有的分支，如 remotes/origin / branchname. 
+
+可以使用checkout命令来把远程分支取到本地，并自动建立tracking
+
+
+```shell
+$ git checkout -b branchname origin/branchname
+> Branch branchname set up to track remote branch branchname from origin
+Switched to a new branch 'branchname'
 ```
 
 
@@ -219,10 +262,10 @@ git push origin :master
 # 如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。删除origin主机的master分支。
 
 git push origin								
-# 当前分支与远程分支之间存在追踪关系，则本地分支和远程分支都可以省略.将当前分支推送到origin主机的对应分支
+# 当前分支与远程分支之间存在追踪关系，则本地分支和远程分支都可以省略.将**当前所在分支**推送到origin主机的对应分支
 
 git push		
-# 当前分支只有一个追踪分支，那么主机名都可以省略
+# 当前分支只有一个push追踪分支，那么主机名都可以省略
 
 git push -u origin master		
 # 如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，这样后面就可以不加任何参数使用git push。此命令将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。
@@ -243,6 +286,7 @@ git push --force-with-lease
 
 ```shell
 git pull <远程主机名> <远程分支名>:<本地分支名>    # pull的作用就相当于fetch和merge，自动合并
+git pull <远程主机名> 			# 根据当前分支的跟踪关系，将远程对应的分支拉取与**当前分支**合并
 
 git pull --rebase                            # 则是git fetch + git rebase.
 
@@ -259,7 +303,7 @@ git merge --abort		    # 抛弃合并过程并且尝试重建合并前的状态�
 git merge --continue
 ```
 
-![merge](./img/merge.png)
+<img src="./img/merge.png" style="zoom:80%;" />
 
 
 > HEAD 是当前指向的版本
@@ -339,22 +383,97 @@ ssh的秘钥一般放在~/.ssh的隐藏文件中，~/.ssh/中的public秘钥，�
 
 > 版本管理某个文件夹下特定的文件（不包含子文件）
 
-<img src="C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816200417878.png" alt="image-20200816200417878" style="zoom: 50%;" />
+<img src="README.assets/image-20200816200417878.png" alt="image-20200816200417878" style="zoom: 50%;" />
 
 案例二
 
 > 这种方式，由于git忽略了文件夹，导致该文件夹中的文件也无法”去忽略“
 
-<img src="C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816200609953.png" alt="image-20200816200609953" style="zoom: 50%;" />
+<img src="README.assets/image-20200816200609953.png" alt="image-20200816200609953" style="zoom: 50%;" />
 
 案例三
 
 > 管理当前工作区中共所有目录子目录中的c文件
 
-![image-20200816201233850](C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816201233850.png)
+<img src="README.assets/image-20200816201233850.png" style="zoom:67%;" />
 
 案例四
 
 > 需要注意的是，版本管理的只能是04 programming文件夹中的txt文件，不能是子文件夹中的txt文件
 
-<img src="C:\Users\pc\AppData\Roaming\Typora\typora-user-images\image-20200816201526393.png" alt="image-20200816201526393" style="zoom:50%;" />
+<img src="README.assets/image-20200816201526393.png" alt="image-20200816201526393" style="zoom:50%;" />
+
+
+
+### 实际应用
+
+```shell
+/**keil**/
+*.bat
+*.saved_uv4
+*.crf
+*.d
+*.axf
+*.htm
+*.hex
+*.map
+*.lnp
+*.sct
+*.dep
+*.inc
+*.url
+*.od
+*.txt
+*.XLH
+*.zip
+*.pc
+*.uvoptx
+
+/**C code**/
+*.o
+
+/**documents**/
+*.mp4
+*.jpg
+*.png
+
+/**office**/
+*.xlsx
+```
+
+
+
+
+
+## 操作案例 
+
+### 单仓库多项目
+
+> 背景：在项目开始之前，我们常常很自然的为每一个项目建立一个仓库，但是随着项目的进行和其他项目的加入，我们会发现这个项目与其他项目之间的关系，或者出现大量的由这个项目引出的原理类似但应用不同的项目。
+>
+> 这些项目之间有密切的联系，如果将他们整合到一个仓库中，将会大大降低项目管理的复杂程度，也能大大减少仓库建立的数量，方便查看和阅读。
+
+
+
+基本原理是采用仓库中的分支去管理多个项目，一个分支对应一个项目的master，如果一个项目有多个重要分支的话，也可以多个分支对应一个项目的多个分支。其操作如下
+
+* 新建一个空的仓库，作为整合多个项目的仓库，复制仓库地址
+* 在之前建立的单个项目仓库中，`git remote add`添加新建的仓库地址，命名为 multiProj
+* `git push --set-upsteam multiProj 分支名:分支名` 提交对应的重要的分支
+
+
+
+
+
+### 单项目多仓库
+
+> 背景
+
+* `git remote add`添加新建的仓库地址，命名为 origin2
+
+* 提交时需要 `git push origin` 和 `git push origin2`
+
+
+
+
+

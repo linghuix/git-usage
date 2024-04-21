@@ -1,4 +1,4 @@
-[TOC]
+
 
 # git-usage
 
@@ -16,11 +16,22 @@ git config --global user.name "linghuix"
 配置别名
 
 ```shell
-git config --global alias.s status     						//s -> status
+//git s -> git status
+git config --global alias.s status     						
+
+//git cm -> git commit
+git config --global alias.cm commit
+
+//git br -> git branch
+git config --global alias.br branch
+
+//git lg -> git log  work only for linux
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
 
 ```shell
-git config --global core.autocrlf true # 提交时转换为 LF, 签出时转换为 CRLF
+git config --global core.autocrlf true 	# 提交时转换为 LF, 签出时转换为 CRLF
+
 git config --global core.autocrlf input # 提交时转换为 LF, 签出时不转换
 ```
 
@@ -99,6 +110,7 @@ git diff                          # 比较最新版本+暂存区 与 工作区�
 git log [-5]					  # 获取最新5个commit-id的信息，查看版本库信息
 git log [-p] filename             ## 列出某个文件被修改的所有版本id, 后续可以用git show显示所有的改动情况 [-p 可展开显示每次提交的该文件内容差异]
 git log --stat				  	  ## 显示版本的文件变动行数，对于bin文件显示字节变动    显示形式: |总行数n ++- 【2/3n是增加的行数，1/3是删除了的行数】
+git log --graph --oneline		  ## 以图形方式显示版本和分支的每次提交信息
 git show --stat <SHA1> | sed -n "/ [\w]\*|/p" | sed "s/|.\*$//"
 
 git show commit-id [filename]     # 某次版本id[某个文件]的具体改动情况,具体显示commit对象的相关信息（提交者，提交时间和commit对象sha-1值等）和上一个提交对象的差异
@@ -120,9 +132,9 @@ git tag [tagname] [commit-id] 	# 给commit-id的版本做tag标记
 git tag -d [tagname] 			# 删除tag标记
 ```
 
-![](./img/git_rm_all.png)
+![](README.assets/git_rm_all.png)
 
-<img src="./img/git_rebase_origin.png" style="zoom:50%;" />
+<img src="README.assets/git_rebase_origin.png" style="zoom:50%;" />
 
 
 ### branches 分支
@@ -309,7 +321,7 @@ git merge --no-ff                   # 每次merge必会提交一次commit，防�
 git checkout --patch branchname dir/filename.txt  # merge 分支的某个文件到当前所在分枝
 ```
 
-<img src="./img/merge.png" style="zoom:80%;" />
+<img src="README.assets/merge.png" style="zoom:80%;" />
 
 
 > HEAD 是当前指向的版本
@@ -406,7 +418,6 @@ ssh的秘钥一般放在~/.ssh的隐藏文件中，~/.ssh/中的public秘钥，�
 案例四
 
 > 需要注意的是，版本管理的只能是04 programming文件夹中的txt文件，不能是子文件夹中的txt文件
-
 
 <img src="README.assets/image-20200816201526393.png" alt="image-20200816201526393" style="zoom:50%;" />
 

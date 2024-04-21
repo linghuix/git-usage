@@ -1,4 +1,4 @@
-# git alias µÄÅäÖÃ
+# git alias 
 git config --global alias.s status      
 
 git config --global alias.cm commit
